@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo HTML</title>
+    <script>
+        var buck; //var objecto definido globalmente
+        var contador = localStorage.getItem("contador");
+        if (contador == null){
+            contador = 0;
+        }
+
+        var visualizacoes;
+
+        function inicia(){
+            buck = document.getElementById("buck"); //iniciamos a variável
+            visualizacoes = document.getElementById("visualizacoes");
+            visualizacoes.innerText = "Vizualizações: " + contador;
+        }
+    </script>
+
+</head>
+<body onload="inicia();">
+    <table>
+        <tr><td><video id="buck" src="./BigBuckBunny_512kb.mp4" type="video/mp4" onended="contador++; localStorage.setItem('contador', contador);">O seu browser não suporta o elemento de vídeo.</video></td><td>
+            <a href="#" onclick="buck.play();">Play</a>
+            <a href="#" onclick="buck.pause();">Pause</a>
+            <a href="#" onclick="buck.pause(); buck.currentTime = 0;">Stop</a>
+            <a href="#" onclick="buck.volume = 1;">Som On</a>
+            <a href="#" onclick="buck.volume = 0;">Som Off</a>
+        </td></tr>
+    </table>
+    <p id="visualizacoes"></p>
+    <progress id='progress-bar' min='0' max='100' value='0'>0% played</progress>
+
+</body>
+</html>
